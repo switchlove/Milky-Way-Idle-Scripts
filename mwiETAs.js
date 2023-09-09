@@ -5,6 +5,8 @@
 // @author       DevSwitch
 // @match        https://www.milkywayidle.com/game
 // @icon         https://www.google.com/s2/favicons?sz=64&domain=milkywayidle.com
+// @downloadURL  https://raw.githubusercontent.com/switchlove/Milky-Way-Idle-Scripts/main/mwiETAs.js
+// @updateURL    https://raw.githubusercontent.com/switchlove/Milky-Way-Idle-Scripts/main/mwiETAs.js
 // @grant        none
 // ==/UserScript==
 
