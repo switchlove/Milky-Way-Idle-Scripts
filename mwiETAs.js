@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         Milky Way Idle - ETAs
-// @version      0.2
+// @version      0.3
 // @description  My scripts!
 // @author       DevSwitch
 // @match        https://www.milkywayidle.com/game
