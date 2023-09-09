@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Milky Way Idle - ETAs
-// @version      0.3
-// @description  MWI ETAs added to the header
+// @version      0.4
+// @description  MWI ETAs added
 // @author       DevSwitch
 // @match        https://www.milkywayidle.com/game
 // @icon         https://www.google.com/s2/favicons?sz=64&domain=milkywayidle.com
@@ -100,6 +100,9 @@ function getEta() {
     if (progressBarText.includes('Doing nothing...') != true) {
         if (progressBarText.includes('Combat') != true) {
             if (progressBarText.includes('(') == true) {
+                if (document.querySelector("#root > div.App_app__3-YeL > div > div.GamePage_headerPanel__1T_cA > div > div.Header_leftHeader__PkRWX > div.Header_actionInfo__1iIAQ > div.Header_myActions__3rlBU > div.Header_currentAction__3IaOm > div.Header_actionName__31-L2").style.height != '40px') {
+                    document.querySelector("#root > div.App_app__3-YeL > div > div.GamePage_headerPanel__1T_cA > div > div.Header_leftHeader__PkRWX > div.Header_actionInfo__1iIAQ > div.Header_myActions__3rlBU > div.Header_currentAction__3IaOm > div.Header_actionName__31-L2").style.height = '40px';
+                }
                 var timePer = document.querySelector("#root > div > div > div.GamePage_headerPanel__1T_cA > div > div.Header_leftHeader__PkRWX > div.Header_actionInfo__1iIAQ > div.Header_myActions__3rlBU > div > div.Header_progressBarAndButton__3yfVI > div.Header_progressBarContainer__2NXUU > div > div.ProgressBar_text__102Yn > span:nth-child(1)").innerText.split('s')[0];
                 var actionsLeft = progressBarHead.innerText.split('(')[1].split(')')[0];
 
@@ -112,6 +115,12 @@ function getEta() {
 
                 document.querySelector("#automationContainer > span").innerHTML = `ETA: ${trueEta}`;
             }
+        } else {
+            document.querySelector("#automationContainer > span").innerHTML = ``;
+            document.querySelector("#root > div.App_app__3-YeL > div > div.GamePage_headerPanel__1T_cA > div > div.Header_leftHeader__PkRWX > div.Header_actionInfo__1iIAQ > div.Header_myActions__3rlBU > div.Header_currentAction__3IaOm > div.Header_actionName__31-L2").style.height = '20px';
         }
+    } else {
+        document.querySelector("#automationContainer > span").innerHTML = ``;
+        document.querySelector("#root > div.App_app__3-YeL > div > div.GamePage_headerPanel__1T_cA > div > div.Header_leftHeader__PkRWX > div.Header_actionInfo__1iIAQ > div.Header_myActions__3rlBU > div.Header_currentAction__3IaOm > div.Header_actionName__31-L2").style.height = '20px';
     }
 }
