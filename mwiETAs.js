@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Milky Way Idle - ETAs
 // @version      0.3
-// @description  My scripts!
+// @description  MWI ETAs added to the header
 // @author       DevSwitch
 // @match        https://www.milkywayidle.com/game
 // @icon         https://www.google.com/s2/favicons?sz=64&domain=milkywayidle.com
