@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         Milky Way Idle - ETAs
-// @version      0.4
+// @version      0.5
 // @description  MWI ETAs added
 // @author       DevSwitch
 // @match        https://www.milkywayidle.com/game
@@ -74,6 +74,7 @@ winLoad(function() {
 function main() {
     setInterval(function(){
         getEta();
+        roughEta();
     }, 250);
 }
 
@@ -122,5 +123,35 @@ function getEta() {
     } else {
         document.querySelector("#automationContainer > span").innerHTML = ``;
         document.querySelector("#root > div.App_app__3-YeL > div > div.GamePage_headerPanel__1T_cA > div > div.Header_leftHeader__PkRWX > div.Header_actionInfo__1iIAQ > div.Header_myActions__3rlBU > div.Header_currentAction__3IaOm > div.Header_actionName__31-L2").style.height = '20px';
+    }
+}
+
+function roughEta() {
+    var queueAmount = document.querySelector("#root > div.App_app__3-YeL > div > div.GamePage_gamePanel__3uNKN > div.GamePage_contentPanel__Zx4FH > div.GamePage_middlePanel__uDts7 > div.GamePage_mainPanel__2njyb > div > div:nth-child(1) > div > div.Modal_modalContainer__3B80m > div.Modal_modal__1Jiep > div.SkillActionDetail_skillActionDetail__1jHU4 > div > div.SkillActionDetail_actionContainer__22yYX > div.SkillActionDetail_maxActionCountInput__1C0Pw > input");
+    if (queueAmount != undefined || queueAmount != null) {
+        var myContainer = document.querySelector("#roughEtaContainer");
+        if (myContainer === null) {
+            var mainDiv = document.createElement('div');
+            mainDiv.id = 'roughEtaContainer';
+            mainDiv.style = 'text-align: left;';
+            mainDiv.appendAfter( document.querySelector("#root > div.App_app__3-YeL > div > div.GamePage_gamePanel__3uNKN > div.GamePage_contentPanel__Zx4FH > div.GamePage_middlePanel__uDts7 > div.GamePage_mainPanel__2njyb > div > div:nth-child(1) > div > div.Modal_modalContainer__3B80m > div.Modal_modal__1Jiep > div.SkillActionDetail_skillActionDetail__1jHU4 > div > div.SkillActionDetail_actionContainer__22yYX > div.SkillActionDetail_maxActionCountInput__1C0Pw") );
+
+            var etaText = document.createElement('span');
+            etaText.textContent = '';
+            document.querySelector("#roughEtaContainer").append(etaText);
+        }
+
+        if (queueAmount.value != 'unlimited') {
+            if (queueAmount.value != '') {
+                var toDoAmount = queueAmount.value;
+                var timeTaken = Number(document.querySelector("#root > div.App_app__3-YeL > div > div.GamePage_gamePanel__3uNKN > div.GamePage_contentPanel__Zx4FH > div.GamePage_middlePanel__uDts7 > div.GamePage_mainPanel__2njyb > div > div:nth-child(1) > div > div.Modal_modalContainer__3B80m > div.Modal_modal__1Jiep > div.SkillActionDetail_skillActionDetail__1jHU4 > div > div.SkillActionDetail_content__1MbXv > div > div:nth-child(8)").innerText.split('s')[0]);
+                var estimatedEta = String(toDoAmount * timeTaken).toDDHHMMSS();
+                document.querySelector("#roughEtaContainer > span").innerHTML = `ETA: ${estimatedEta}`;
+            } else {
+            document.querySelector("#roughEtaContainer > span").innerHTML = ``;
+            }
+        } else {
+            document.querySelector("#roughEtaContainer > span").innerHTML = ``;
+        }
     }
 }
